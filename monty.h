@@ -40,8 +40,6 @@ typedef struct instruction_s
 extern char stack_queue;
 
 void _add(stack_t **top, unsigned int line_number);
-void _mod(stack_t **top, unsigned int line_number);
-void _mul(stack_t **top, unsigned int line_number);
 void _nop(stack_t **top, unsigned int line_number);
 void _pall(stack_t **top, unsigned int line_number);
 void _pint(stack_t **top, unsigned int line_number);
