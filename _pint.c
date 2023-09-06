@@ -8,14 +8,14 @@
  */
 void _pint(stack_t **top, unsigned int line_number)
 {
-	stack_t *current = *stack;
+	stack_t *current_top = *top;
 
-	if (*stack == NULL)
-	{
-		dprintf(STDERR, "L%d: can't pint, stack empty\n", line_number);
-
-		exit(EXIT_FAILURE);
-	}
-
-	printf("%d\n", current->n);
+	if (current_top == NULL)
+{
+    dprintf(STDERR_FILENO, "L%u: can't pint, stack empty\n", line_number);
+    exit(EXIT_FAILURE);
 }
+
+	printf("%d\n", current_top->n);
+}
+
