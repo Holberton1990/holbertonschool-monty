@@ -6,7 +6,7 @@
  */
 int value;
 
-void _push(stack_t **top, unsigned int line_number)
+void _push(stack_t **top, unsigned int __attribute__((unused)) line_number)
 {
     stack_t *new = malloc(sizeof(stack_t));
     if (new == NULL)
@@ -31,7 +31,7 @@ void _push(stack_t **top, unsigned int line_number)
     }
 }
 
-void _pall(stack_t **top, unsigned int line_number)
+void _pall(stack_t **top, unsigned int __attribute__((unused)) line_number) 
 {
     stack_t *tmp = *top;
     while (tmp != NULL)
