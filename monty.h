@@ -47,4 +47,5 @@ void _pop(stack_t **top, unsigned int line_number);
 void _push(stack_t **top, unsigned int line_number);
 void _swap(stack_t **top, unsigned int line_number);
 void (*get_op(char *token))(stack_t **stack, unsigned int);
+void free_stack(stack_t **stack);
 #endif /*_MONTY_H_ */

@@ -152,4 +152,22 @@ int is_numeric(const char *str)
 
     return 1; // Numeric
 }
+/**
+ * free_stack - Frees all nodes in the stack.
+ * @stack: A pointer to the head of the stack.
+ */
+void free_stack(stack_t **stack)
+{
+    stack_t *current = *stack;
+    stack_t *temp;
+
+    while (current != NULL)
+    {
+        temp = current;
+        current = current->next;
+        free(temp);
+    }
+
+    *stack = NULL; // Set the stack pointer to NULL to indicate an empty stack.
+}
 

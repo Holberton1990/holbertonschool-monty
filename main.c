@@ -1,59 +1,59 @@
 #include "monty.h"
+
 /**
- * main - Monty bytecode interpreter
- * @argc: number of arguments passed
- * @argv: array of argument strings
- *
- * Return: EXIT_SUCCESS on success or EXIT_FAILURE on failure
+ * main - Entry point for the Monty language interpreter
+ * @argc: The number of command-line arguments (including the program name).
+ * @argv: An array of strings containing the command-line arguments.
+ * Return: Always 0 on success.
  */
 int main(int argc, char *argv[])
 {
+    FILE *monty_file;
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
     stack_t *stack = NULL;
     unsigned int line_number = 0;
-    FILE *fs = NULL;
-    char *lineptr = NULL, *op = NULL;
-    size_t n = 0;
-   
 
     if (argc != 2)
     {
-        fprintf(stderr, "USAGE: monty file\n");
+        fprintf(stderr, "Usage: %s <file>\n", argv[0]);
         exit(EXIT_FAILURE);
     }
 
-    fs = fopen(argv[1], "r");
-    if (fs == NULL)
+    monty_file = fopen(argv[1], "r");
+    if (monty_file == NULL)
     {
         fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
         exit(EXIT_FAILURE);
     }
 
-   while (getline(&lineptr,&n, fs) !=-1)
-   {
+    while ((read = getline(&line, &len, monty_file)) != -1)
+    {
         line_number++;
-        op = strtok(lineptr, "\n\t\r ");
-        if (op != NULL && op[0] != '#')
+        char *token = strtok(line, " \t\n");
+        if (token == NULL || *token == '#')
+            continue; // Empty line or comment
+
+        void (*op_func)(stack_t **, unsigned int) = get_op(token);
+        if (op_func == NULL)
         {
-            if (strcmp(op, "push") == 0)
-            {
-                op = strtok(NULL, "\n\t\r ");
-                if (op == NULL || is_numeric(op))
-                {
-                    fprintf(stderr, "L%u: usage: push integer\n", line_number);
-                    exit(EXIT_FAILURE);
-                }
-		            
-	    }
+            fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
+            free_stack(&stack);
+            fclose(monty_file);
+            free(line);
+            exit(EXIT_FAILURE);
         }
+
+        // Execute the opcode function
+        op_func(&stack, line_number);
     }
-	
 
-		fclose(fs);		
-		free(lineptr);
-		exit(EXIT_SUCCESS);
+    // Clean up and close the file
+    free_stack(&stack);
+    fclose(monty_file);
+    free(line);
 
-            }
+    return (EXIT_SUCCESS);
+}
 
-      
-
-  
