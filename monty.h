@@ -38,7 +38,7 @@ typedef struct instruction_s
 } instruction_t;
 
 extern char stack_queue;
-
+int is_numeric(const char *str);
 void _add(stack_t **top, unsigned int line_number);
 void _nop(stack_t **top, unsigned int line_number);
 void _pall(stack_t **top, unsigned int line_number);
@@ -46,5 +46,5 @@ void _pint(stack_t **top, unsigned int line_number);
 void _pop(stack_t **top, unsigned int line_number);
 void _push(stack_t **top, unsigned int line_number);
 void _swap(stack_t **top, unsigned int line_number);
-
+void (*get_op(char *token))(stack_t **stack, unsigned int);
 #endif /*_MONTY_H_ */

@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
             if (strcmp(op, "push") == 0)
             {
                 op = strtok(NULL, "\n\t\r ");
-                if (op == NULL || !is_numeric(op))
+                if (op == NULL || is_numeric(op))
                 {
                     fprintf(stderr, "L%u: usage: push integer\n", line_number);
                     exit(EXIT_FAILURE);

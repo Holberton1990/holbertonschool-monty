@@ -139,3 +139,17 @@ void nop(stack_t **top, unsigned int line_number)
     (void)line_number;
     /* This function does nothing */
 }
+int is_numeric(const char *str)
+{
+    if (str == NULL || *str == '\0')
+        return 0; // Not numeric
+
+    for (int i = 0; str[i] != '\0'; i++)
+    {
+        if (!isdigit((unsigned char)str[i]))
+            return 0; // Not numeric
+    }
+
+    return 1; // Numeric
+}
+
