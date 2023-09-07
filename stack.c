@@ -63,9 +63,9 @@ void _pall(stack_t **top, unsigned int line_number)
         printf("%d\n", tmp->n);
         tmp = tmp->next;
     }
-    
-    // Add a check for "pall" opcode (case insensitive)
-    if (strcasecmp("pall", "pall") != 0)  // Directly compare with "pall"
+
+    // Check if the opcode was "pall" and produce an error message if not
+    if (strcasecmp("pall", "pall") != 0)
     {
         fprintf(stderr, "L%u: unknown instruction pall\n", line_number);
         free_stack(top);
