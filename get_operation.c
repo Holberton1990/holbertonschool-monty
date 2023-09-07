@@ -67,6 +67,5 @@ void execute_instruction(char *opcode, stack_t **stack, unsigned int line_number
 	fprintf(stderr, "L%u: %s %s\n", line_number, msg, opcode);	
 	free_stack(&stack);	
 	exit(EXIT_FAILURE);
-
 }
 
