@@ -6,8 +6,23 @@
  */
 int value;
 
-void _push(stack_t **top, unsigned int __attribute__((unused)) line_number)
+/**
+ * _push - Opcode Push that pushes an element to the stack.
+ * @top: Pointer to the head of the stack.
+ * @line_number: Line number in the file.
+ */
+void _push(stack_t **top, unsigned int line_number)
 {
+    char *arg = strtok(NULL, " \t\n"); // Get the argument after "push"
+    
+    if (!arg || !is_numeric(arg))
+    {
+        fprintf(stderr, "L%u: usage: push integer\n", line_number);  // Updated error message format
+        exit(EXIT_FAILURE);
+    }
+    
+    int value = atoi(arg);
+    
     stack_t *new = malloc(sizeof(stack_t));
     if (new == NULL)
     {
@@ -30,6 +45,7 @@ void _push(stack_t **top, unsigned int __attribute__((unused)) line_number)
         *top = new;
     }
 }
+
 
 void _pall(stack_t **top, unsigned int __attribute__((unused)) line_number) 
 {
