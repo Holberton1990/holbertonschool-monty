@@ -108,7 +108,6 @@ void swap(stack_t **top, unsigned int line_number)
 
     second->next = first;
     first->prev = second;
-    stack_t;
     *top = second;
 }
 
