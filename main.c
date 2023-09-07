@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     FILE *fs = NULL;
     char *lineptr = NULL, *op = NULL;
     size_t n = 0;
+    is_numeric;
 
     if (argc != 2)
     {
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
             if (strcmp(op, "push") == 0)
             {
                 op = strtok(NULL, "\n\t\r ");
-                if (op == NULL || !line_numeric(op))
+                if (op == NULL || !is_numeric(op))
                 {
                     fprintf(stderr, "L%u: usage: push integer\n", line_number);
                     exit(EXIT_FAILURE);
