@@ -41,16 +41,15 @@ int main(int argc, char *argv[])
                     fprintf(stderr, "L%u: usage: push integer\n", line_number);
                     exit(EXIT_FAILURE);
                 }
-		            free_stack(&stack);
-                exit(EXIT_SUCCESS);
-            }
+		            
+	    }
         }
     }
-		free stack_t(&stack);
+	
 
 		fclose(fs);		
 		free(lineptr);
-		exit(EXIT_SUCCEss);
+		exit(EXIT_SUCCESS);
 
             }
 
