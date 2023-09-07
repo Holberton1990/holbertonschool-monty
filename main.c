@@ -1,4 +1,5 @@
 #include "monty.h"
+#include "myfunctions.h"
 
 /**
  * main - Monty bytecode interpreter
@@ -43,7 +44,9 @@ int main(int argc, char *argv[])
                     exit(EXIT_FAILURE);
                 }
 		fclose(fs);		
-		free_stack(stack);
+		free stack_t(&stack);
 		exit(EXIT_SUCCESS);
 
             }
+	}
+   }
