@@ -42,11 +42,11 @@ int main(int argc, char *argv[])
                     fprintf(stderr, "L%u: usage: push integer\n", line_number);
                     exit(EXIT_FAILURE);
                 }
-                _push(&stack, atoi(op));
+                _push(&stack, line_number);
             }
             else if (strcmp(op, "pall") == 0)
             {
-                _pall(stack);
+                _pall(&stack, line_number);
             }
             else if (strcmp(op, "pop") == 0)
             {
