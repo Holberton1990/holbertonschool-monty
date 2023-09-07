@@ -1,6 +1,6 @@
 #include "monty.h"
 
-void (*get_op(char *token, unsigned int line))(stack_t **stack, unsigned int)
+void (*get_op(char *token))(stack_t **stack, unsigned int)
 {
     int i;
     instruction_t op[] = {
