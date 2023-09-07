@@ -1,6 +1,4 @@
 #include "monty.h"
-#include "myfunctions.h"
-
 /**
  * main - Monty bytecode interpreter
  * @argc: number of arguments passed
