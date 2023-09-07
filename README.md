@@ -4,16 +4,38 @@
 
 ## Table of Contents
 
+- [Stacks](#stacks)
+- [Queues](#Queues)
 - [Description](#description)
 - [Opcodes](#opcodes)
 - [Respository Files Description](#repository-files-description)
 - [Usage Examples](#usage-examples)
-- [Getting Started](#getting-started)
-- [Prerequisits](#prerequisits)
 - [Built With - Compilation](#built-with---compilation)
+- [Usage](#Usage)
 - [Authors](#authors)
 - [License](#license)
 - [Acknowledgments](#Acknowledgments)
+
+### Stacks
+A stack is one of the simplest data structures. It is just like a pile of playing cards or a stack of plates. When you add something to the pile you put it on top of all the things that are already there. When you take something away you remove it from the top of the stack. Computer Science uses specialized terms for things like this though. So instead of add we say push, and instead of remove we say pop. Another term you may hear with regards to stacks is LIFO which stands for Last In First Out. With a stack the last thing you added in the first thing that is removed.
+
+##### Stack Push
+<img src="http://www.thagomizer.com/img/StackPush.gif">
+
+##### Stack Pop
+<img src="http://www.thagomizer.com/img/StackPop.gif">
+
+### Queues
+You probably have experience with physical queues at amusement parks, concerts, or sports arenas. In the US, we usually call them lines. A queue is an ordered collection (or group) where we add things to one end (called the tail) and we remove things from the other end (called the head). Adding things to a queue is called enqueueing. Removing items from a queue is called dequeueing. This is also called FIFO for first in, first out.
+
+##### Queue Add
+<img src="http://www.thagomizer.com/img/QueueAdd.gif">
+
+##### Queue Remove
+<img src="http://www.thagomizer.com/img/QueueRemove.gif">
+
+#### Conclusion and Bonus
+These two data structures are the heart of Breadth-First Search and Depth-First Search. In turn those algorithms can be used to solve mazes, build minesweeper, and solve a large number of path-finding problems. 
 
 ## Description
 
@@ -119,20 +141,46 @@ julien@ubuntu:~/monty$ ./monty bytecodes/06.m
 julien@ubuntu:~/monty$
 ```
 
-## Getting Started
-
-Clone this repository to get all the files you need to run this version of "monty" on your machine. Each part needed to make this interpreter works is in a single and a separete file, so you can connect and trace all the steps of the function and you can make your own changes and upgrades.
-
-## Prerequisites
-
-This program was made and tested using Ubuntu 14.04.3 LTS and compiled with gcc 4.8.4. We recommend you to test this interpreter under this conditions.
-
 ## Built With - Compilation
 
-* Ubuntu 14.04.3 LTS Running on a Virtual Machine "Vagrant"
-* gcc 4.8.4 Compiled with the flags: `-Wall -Werror -Wextra -pedantic *.c -o monty`
-* GNU Emacs 24.3.1
 
+* gcc 4.8.4 Compiled with the flags: `-Wall -Werror -Wextra -pedantic *.c -o monty`
+
+Any output will be printed on stdout. Any error message will be printed on stderr
+## Usage:
+```
+./monty file
+```
+
+
+Where file is the path to the file containing Monty byte code. If the user does not give any file or more than one argument to your program, print the error message:
+```
+USAGE: monty file
+```
+Followed by a new line, and exit with the status EXIT_FAILURE. If, for any reason, it’s not possible to open the file:
+```
+Error: Can't open file <file>
+```
+Followed by a new line, and exit with the status EXIT_FAILURE, where <file> is the name of the file. If the file contains an invalid instruction:
+```
+L<line_number>: unknown instruction <opcode>
+```
+Followed by a new line, and exit with the status EXIT_FAILURE where is the line number where the instruction appears.
+Line numbers always start at 1. The monty program runs the bytecodes line by line and stop if either:
+1. it executed properly every line of the file
+2. it finds an error in the file
+3. an error occured
+
+If you can’t malloc anymore, print the error message:
+```
+Error: malloc failed
+```
+Followed by a new line, and exit with status EXIT_FAILURE.
+We used malloc and free and are not allowed to use any other function from man malloc (realloc, calloc, …)
+
+<hr>
+
+<h3>
 
 # AUTHORS
 
