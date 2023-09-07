@@ -15,10 +15,6 @@ int main(int argc, char *argv[])
     char *lineptr = NULL, *op = NULL;
     size_t n = 0;
 
-    struct var_t var;
-    var.queue = 0;
-    var.stack_len = 0;
-
     if (argc != 2)
     {
         fprintf(stderr, "USAGE: monty file\n");
@@ -46,31 +42,31 @@ int main(int argc, char *argv[])
                     fprintf(stderr, "L%u: usage: push integer\n", line_number);
                     exit(EXIT_FAILURE);
                 }
-                push(&stack, atoi(op));
+                _push(&stack, atoi(op));
             }
             else if (strcmp(op, "pall") == 0)
             {
-                pall(stack);
+                _pall(stack);
             }
             else if (strcmp(op, "pop") == 0)
             {
-                pop(&stack, line_number);
+                _pop(&stack, line_number);
             }
             else if (strcmp(op, "add") == 0)
             {
-                add(&stack, line_number);
+                _add(&stack, line_number);
             }
             else if (strcmp(op, "nop") == 0)
             {
-                nop(&stack, line_number);
+                _nop(&stack, line_number);
             }
             else if (strcmp(op, "pint") == 0)
             {
-                pint(stack, line_number);
+                _pint(stack, line_number);
             }
             else if (strcmp(op, "swap") == 0)
             {
-                swap(&stack, line_number);
+                _swap(&stack, line_number);
             }
         
         }
