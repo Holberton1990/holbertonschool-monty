@@ -63,9 +63,7 @@ void execute_instruction(char *opcode, stack_t **stack, unsigned int line_number
  * stream, including the line number and opcode where the error occurred, and
  * then exits the program with a failure status code.
  */
-    monty_error("unknown instruction", line_number, opcode);
-}
-
+  
 void monty_error(char *msg, unsigned int line_number, char *opcode)
 {
     fprintf(stderr, "L%u: %s %s\n", line_number, msg, opcode);
