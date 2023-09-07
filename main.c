@@ -45,11 +45,15 @@ int main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
 
+        // Execute the opcode function
+        op_func(&stack, line_number);
     }
 
+    // Clean up and close the file
     free_stack(&stack);
     fclose(monty_file);
     free(line);
 
     return (EXIT_SUCCESS);
 }
+
