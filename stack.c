@@ -87,7 +87,7 @@ void _pop(stack_t **top, unsigned int line_number)
  * @top: double pointer to the top of the stack
  * @line_number: line number of the file
  */
-void swap(stack_t **top, unsigned int line_number)
+void _swap(stack_t **top, unsigned int line_number)
 {
     stack_t *first, *second;
 
@@ -116,7 +116,7 @@ void swap(stack_t **top, unsigned int line_number)
  * @top: double pointer to the top of the stack
  * @line_number: line number of the file
  */
-void add(stack_t **top, unsigned int line_number)
+void _add(stack_t **top, unsigned int line_number)
 {
     if (*top == NULL || (*top)->next == NULL)
     {
@@ -133,7 +133,7 @@ void add(stack_t **top, unsigned int line_number)
  * @top: double pointer to the top of the stack
  * @line_number: line number of the file
  */
-void nop(stack_t **top, unsigned int line_number)
+void _nop(stack_t **top, unsigned int line_number)
 {
     (void)top;
     (void)line_number;
