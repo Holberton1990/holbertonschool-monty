@@ -183,7 +183,7 @@ We used malloc and free and are not allowed to use any other function from man m
 # AUTHORS
 
 * **Ersida Karaj** -https://github.com/Holberton1990
-* **Silvi Marku** - https://github.com/SilviMarku
+* **Silvia Marku** - https://github.com/SilviMarku
 
 
 ## License
