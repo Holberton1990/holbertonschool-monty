@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     char *lineptr = NULL, *op = NULL;
     size_t n = 0;
 
-    var_t var;
+    struct var_t var;
     var.queue = 0;
     var.stack_len = 0;
 
@@ -32,12 +32,8 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    on_exit(free_lineptr, &lineptr);
-    on_exit(free_stack, &stack);
-    on_exit(m_fs_close, fs);
-
-    while (getline(&lineptr, &n, fs) != -1)
-    {
+   while (getline(&lineptr,&n, fs) !=-1)
+   {
         line_number++;
         op = strtok(lineptr, "\n\t\r ");
         if (op != NULL && op[0] != '#')
@@ -47,7 +43,7 @@ int main(int argc, char *argv[])
                 op = strtok(NULL, "\n\t\r ");
                 if (op == NULL || !is_numeric(op))
                 {
-                    dprintf(STDOUT_FILENO, "L%u: usage: push integer\n", line_number);
+                    fprintf(stderr, "L%u: usage: push integer\n", line_number);
                     exit(EXIT_FAILURE);
                 }
                 push(&stack, atoi(op));
@@ -79,6 +75,9 @@ int main(int argc, char *argv[])
         
         }
     }
+
+    fclose(fs);
+    free(lineptr);
 
     exit(EXIT_SUCCESS);
 }
