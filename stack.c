@@ -108,7 +108,7 @@ void swap(stack_t **top, unsigned int line_number)
 
     second->next = first;
     first->prev = second;
-stack.c
+    stack_t;
     *top = second;
 }
 
@@ -126,7 +126,7 @@ void add(stack_t **top, unsigned int line_number)
     }
 
     (*top)->next->n += (*top)->n;
-    pop(top, line_number);
+    _pop(top, line_number);
 }
 
 /**
