@@ -1,23 +1,70 @@
 #include "monty.h"
 
-void (*get_op(char *token))(stack_t **stack, unsigned int)
-{
-    int i;
-    instruction_t op[] = {
-        {"push", _push},
-        {"pop", _pop},
-        {"pint", _pint},
-        {"swap", _swap},
-        {"add", _add},
-        {"nop", _nop},
-        {NULL, NULL}
-    };
+/* Global variable for the stack */
+stack_t *stack = NULL;
 
-    for (i = 0; op[i].opcode != NULL; i++)
+/**
+ * free_stack - Frees a stack
+ * @stack: Pointer to the head of the stack
+ */
+void free_stack(stack_t **stack)
+{
+    stack_t *current, *temp;
+
+    if (stack == NULL || *stack == NULL)
+        return;
+
+    current = *stack;
+    while (current != NULL)
     {
-        if (strcmp(token, op[i].opcode) == 0)
-            return (op[i].f);
+        temp = current;
+        current = current->next;
+        free(temp);
     }
-    return NULL;
+}
+
+/**
+ * execute_instruction - Executes a Monty bytecode instruction
+ * @opcode: The opcode to execute
+ * @stack: Pointer to the head of the stack
+ * @line_number: The current line number in the Monty file
+ */
+void execute_instruction(char *opcode, stack_t **stack, unsigned int line_number)
+{
+    instruction_t instructions[] = {
+        {"push", push},
+        {"pall", pall},
+        {"pint", pint},
+        {"pop", pop},
+        {"swap", swap},
+        {"add", add},
+        {"nop", nop},
+        {NULL, NULL}};
+
+    int i = 0;
+
+    while (instructions[i].opcode != NULL)
+    {
+        if (strcmp(opcode, instructions[i].opcode) == 0)
+        {
+            instructions[i].f(stack, line_number);
+            return;
+        }
+        i++;
+    }
+
+    monty_error("unknown instruction", line_number);
+}
+
+/**
+ * monty_error - Prints an error message and exits with failure status
+ * @msg: The error message to print
+ * @line_number: The current line number in the Monty file
+ */
+void monty_error(char *msg, unsigned int line_number)
+{
+    fprintf(stderr, "L%u: %s\n", line_number, msg);
+    free_stack(&stack);
+    exit(EXIT_FAILURE);
 }
 

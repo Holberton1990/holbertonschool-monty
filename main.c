@@ -1,14 +1,18 @@
 #include "monty.h"
-#include <stdio.h>
-#include <stdlib.h>
 
+/**
+ * main - Entry point for the Monty language interpreter
+ * @argc: The number of command-line arguments (including the program name).
+ * @argv: An array of strings containing the command-line arguments.
+ * Return: Always 0 on success.
+ */
 int main(int argc, char *argv[])
 {
+    stack_t *my_stack = NULL;
     FILE *monty_file;
     char *line = NULL;
     size_t len = 0;
     ssize_t read;
-    stack_t *stack = NULL;
     unsigned int line_number = 0;
 
     if (argc != 2)
@@ -29,35 +33,12 @@ int main(int argc, char *argv[])
         line_number++;
         char *token = strtok(line, " \t\n");
         if (token == NULL || *token == '#')
-            continue; // Empty line or comment
+            continue;
 
-        void (*op_func)(stack_t **, unsigned int) = get_op(token);
-        if (op_func == NULL)
-        {
-            fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
-            free_stack(&stack);
-            fclose(monty_file);
-            free(line);
-            exit(EXIT_FAILURE);
-        }
-
-        // Execute the opcode function
-        if (strcasecmp(token, "pall") == 0)
-        {
-            op_func(&stack, line_number);
-        }
-        else
-        {
-            fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
-            free_stack(&stack);
-            fclose(monty_file);
-            free(line);
-            exit(EXIT_FAILURE);
-        }
+        execute_instruction(token, &my_stack, line_number);
     }
 
-    // Clean up and close the file
-    free_stack(&stack);
+    free_stack(&my_stack);
     fclose(monty_file);
     free(line);
 

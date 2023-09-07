@@ -1,12 +1,12 @@
-#ifndef _MONTY_H_
-#define _MONTY_H_
+#ifndef MONTY_H
+#define MONTY_H
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-#include <unistd.h>
-#include <sys/types.h>
+
+/* Data structures */
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -14,13 +14,13 @@
  * @next: points to the next element of the stack (or queue)
  *
  * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO Holberton project
+ * for stack, queues, LIFO, FIFO
  */
 typedef struct stack_s
 {
-	int n;
-	struct stack_s *prev;
-	struct stack_s *next;
+    int n;
+    struct stack_s *prev;
+    struct stack_s *next;
 } stack_t;
 
 /**
@@ -29,23 +29,28 @@ typedef struct stack_s
  * @f: function to handle the opcode
  *
  * Description: opcode and its function
- * for stack, queues, LIFO, FIFO Holberton project
+ * for stack, queues, LIFO, FIFO
  */
 typedef struct instruction_s
 {
-	char *opcode;
-	void (*f)(stack_t **top, unsigned int line_number);
+    char *opcode;
+    void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern char stack_queue;
+/* Function prototypes */
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
 int is_numeric(const char *str);
-void _add(stack_t **top, unsigned int line_number);
-void _nop(stack_t **top, unsigned int line_number);
-void _pall(stack_t **top, unsigned int line_number);
-void _pint(stack_t **top, unsigned int line_number);
-void _pop(stack_t **top, unsigned int line_number);
-void _push(stack_t **top, unsigned int line_number);
-void _swap(stack_t **top, unsigned int line_number);
-void (*get_op(char *token))(stack_t **stack, unsigned int);
+stack_t *push_stack(stack_t **stack, int n);
+/* Helper functions */
 void free_stack(stack_t **stack);
-#endif /*_MONTY_H_ */
+void execute_instruction(char *opcode, stack_t **stack, unsigned int line_number);
+void monty_error(char *msg, unsigned int line_number);
+
+#endif /* MONTY_H */
+
