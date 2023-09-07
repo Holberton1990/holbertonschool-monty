@@ -39,7 +39,8 @@ void execute_instruction(char *opcode, stack_t **stack, unsigned int line_number
         {"swap", swap},
         {"add", add},
         {"nop", nop},
-        {NULL, NULL}};
+        {NULL, NULL}
+    };
 
     int i = 0;
 
@@ -52,7 +53,16 @@ void execute_instruction(char *opcode, stack_t **stack, unsigned int line_number
         }
         i++;
     }
-
+/**
+ * monty_error - Prints an error message and exits the program
+ * @msg: The error message to print
+ * @line_number: The line number where the error occurred
+ * @opcode: The opcode associated with the error
+ *
+ * Description: This function prints an error message to the standard error
+ * stream, including the line number and opcode where the error occurred, and
+ * then exits the program with a failure status code.
+ */
     monty_error("unknown instruction", line_number, opcode);
 }
 
