@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
             if (strcmp(op, "push") == 0)
             {
                 op = strtok(NULL, "\n\t\r ");
-                if (op == NULL || !is_numeric(op))
+                if (op == NULL || !line_numeric(op))
                 {
                     fprintf(stderr, "L%u: usage: push integer\n", line_number);
                     exit(EXIT_FAILURE);
@@ -53,40 +53,6 @@ int main(int argc, char *argv[])
 
             }
 
-     push(&stack, atoi(op)); 
-            }
-            else if (strcmp(op, "pall") == 0)
-            {
-                pall(&stack, line_number); 
-            }
-            else if (strcmp(op, "pop") == 0)
-            {
-                pop(&stack, line_number); 
-            }
-            else if (strcmp(op, "pint") == 0)
-            {
-                pint(&stack, line_number); 
-            }
-            else if (strcmp(op, "swap") == 0)
-            {
-                swap(&stack, line_number); 
-            }
-            else if (strcmp(op, "add") == 0)
-            {
-                add(&stack, line_number); 
-            }
-            else if (strcmp(op, "nop") == 0)
-            {
-                nop(&stack, line_number); 
-            }
-            
-        }
-    }
+      }
 
-    free_stack(&stack); 
-
-    fclose(fs);
-    free(lineptr);
-    exit(EXIT_SUCCESS);
-}
-   }
+  
