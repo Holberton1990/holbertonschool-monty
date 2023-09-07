@@ -157,11 +157,11 @@ int is_numeric(const char *str)
     return 1;
 }
 /**
- * push_stack - Shton një element në fillim të stekut.
- * @stack: Adresa e stekut.
- * @n: Vlera për të shtuar në stek.
+ * push_stack - Adds a new element in the beginning of stack.
+ * @stack: The address of stack.
+ * @n: The value added to the stack.
  *
- * Return: Pointeri te elementi i ri, ose NULL në rast të dështimit.
+ * Return: Pointer to the new element, or NULL if fails.
  */
 stack_t *push_stack(stack_t **stack, int n)
 {
@@ -191,6 +191,3 @@ stack_t *push_stack(stack_t **stack, int n)
 
     return (new_node);
 }
-
-
-
