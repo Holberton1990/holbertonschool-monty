@@ -46,14 +46,30 @@ void _push(stack_t **top, unsigned int line_number)
     }
 }
 
-
-void _pall(stack_t **top, unsigned int __attribute__((unused)) line_number) 
+/**
+ * _pall - Opcode Pall that prints all values on the stack.
+ * @top: Pointer to the head of the stack.
+ * @line_number: Line number in the file.
+ */
+void _pall(stack_t **top, unsigned int line_number)
 {
+    if (*top == NULL)
+        return;  // If the stack is empty, do nothing
+    
     stack_t *tmp = *top;
+
     while (tmp != NULL)
     {
         printf("%d\n", tmp->n);
         tmp = tmp->next;
+    }
+    
+    // Add a check for "pall" opcode (case insensitive)
+    if (strcasecmp("pall", "pall") != 0)  // Directly compare with "pall"
+    {
+        fprintf(stderr, "L%u: unknown instruction pall\n", line_number);
+        free_stack(top);
+        exit(EXIT_FAILURE);
     }
 }
 
