@@ -26,7 +26,7 @@ A stack is one of the simplest data structures. It is just like a pile of playin
 <img src="http://www.thagomizer.com/img/StackPop.gif">
 
 ### Queues
-You probably have experience with physical queues at amusement parks, concerts, or sports arenas. In the US, we usually call them lines. A queue is an ordered collection (or group) where we add things to one end (called the tail) and we remove things from the other end (called the head). Adding things to a queue is called enqueueing. Removing items from a queue is called dequeueing. This is also called FIFO for first in, first out.
+A queue is an ordered collection (or group) where we add things to one end (called the tail) and we remove things from the other end (called the head). Adding things to a queue is called enqueueing. Removing items from a queue is called dequeueing. This is also called FIFO for first in, first out.
 
 ##### Queue Add
 <img src="http://www.thagomizer.com/img/QueueAdd.gif">
@@ -34,8 +34,6 @@ You probably have experience with physical queues at amusement parks, concerts, 
 ##### Queue Remove
 <img src="http://www.thagomizer.com/img/QueueRemove.gif">
 
-#### Conclusion and Bonus
-These two data structures are the heart of Breadth-First Search and Depth-First Search. In turn those algorithms can be used to solve mazes, build minesweeper, and solve a large number of path-finding problems. 
 
 ## Description
 
