@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     FILE *fs = NULL;
     char *lineptr = NULL, *op = NULL;
     size_t n = 0;
-    is_numeric;
+   
 
     if (argc != 2)
     {
@@ -54,6 +54,6 @@ int main(int argc, char *argv[])
 
             }
 
-      }
+      
 
   
