@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
     char *lineptr = NULL, *op = NULL;
     size_t n = 0;
 
+    var_t var;
     var.queue = 0;
     var.stack_len = 0;
 
