@@ -42,31 +42,31 @@ int main(int argc, char *argv[])
                     fprintf(stderr, "L%u: usage: push integer\n", line_number);
                     exit(EXIT_FAILURE);
                 }
-                _push(&stack, line_number);
+                _push(&stack_t, line_number);
             }
             else if (strcmp(op, "pall") == 0)
             {
-                _pall(&stack, line_number);
+                _pall(&stack_t, line_number);
             }
             else if (strcmp(op, "pop") == 0)
             {
-                _pop(&stack, line_number);
+                _pop(&stack_t, line_number);
             }
             else if (strcmp(op, "add") == 0)
             {
-                _add(&stack, line_number);
+                _add(&stack_t, line_number);
             }
             else if (strcmp(op, "nop") == 0)
             {
-                _nop(&stack, line_number);
+                _nop(&stack_t, line_number);
             }
             else if (strcmp(op, "pint") == 0)
             {
-                _pint(stack, line_number);
+                _pint(&stack_t, line_number);
             }
             else if (strcmp(op, "swap") == 0)
             {
-                _swap(&stack, line_number);
+                _swap(&stack_t, line_number);
             }
         
         }
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 
     fclose(fs);
     free(lineptr);
-    free_stack(&stack); 
+    free stack_t(&stack); 
     exit(EXIT_SUCCESS);
 }
 
