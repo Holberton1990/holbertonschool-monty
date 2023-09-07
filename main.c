@@ -1,11 +1,7 @@
 #include "monty.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-/**
- * main - Entry point for the Monty language interpreter
- * @argc: The number of command-line arguments (including the program name).
- * @argv: An array of strings containing the command-line arguments.
- * Return: Always 0 on success.
- */
 int main(int argc, char *argv[])
 {
     FILE *monty_file;
@@ -17,7 +13,7 @@ int main(int argc, char *argv[])
 
     if (argc != 2)
     {
-        fprintf(stderr, "USAGE: monty file\n");  // Updated error message format
+        fprintf(stderr, "USAGE: monty file\n");
         exit(EXIT_FAILURE);
     }
 
@@ -46,7 +42,18 @@ int main(int argc, char *argv[])
         }
 
         // Execute the opcode function
-        op_func(&stack, line_number);
+        if (strcasecmp(token, "pall") == 0)
+        {
+            op_func(&stack, line_number);
+        }
+        else
+        {
+            fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
+            free_stack(&stack);
+            fclose(monty_file);
+            free(line);
+            exit(EXIT_FAILURE);
+        }
     }
 
     // Clean up and close the file
