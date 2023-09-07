@@ -53,7 +53,7 @@ void execute_instruction(char *opcode, stack_t **stack, unsigned int line_number
         i++;
     }
 
-    monty_error("unknown instruction", line_number);
+    monty_error("unknown instruction", line_number, opcode);
 }
 
 /**
@@ -61,9 +61,9 @@ void execute_instruction(char *opcode, stack_t **stack, unsigned int line_number
  * @msg: The error message to print
  * @line_number: The current line number in the Monty file
  */
-void monty_error(char *msg, unsigned int line_number)
+void monty_error(char *msg, unsigned int line_number, char *opcode)
 {
-    fprintf(stderr, "L%u: %s\n", line_number, msg);
+    fprintf(stderr, "L%u: %s %s\n", line_number, msg, opcode);
     free_stack(&stack);
     exit(EXIT_FAILURE);
 }

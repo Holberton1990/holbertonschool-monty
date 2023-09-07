@@ -50,7 +50,7 @@ stack_t *push_stack(stack_t **stack, int n);
 /* Helper functions */
 void free_stack(stack_t **stack);
 void execute_instruction(char *opcode, stack_t **stack, unsigned int line_number);
-void monty_error(char *msg, unsigned int line_number);
+void monty_error(char *msg, unsigned int line_number, char *opcode);
 
 #endif /* MONTY_H */
 
