@@ -1,41 +1,73 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "monty.h"
 
-int main(int argc, char **argv)
+/* Global variable for the stack */
+stack_t *stack = NULL;
+
+/**
+ * free_stack - Frees a stack
+ * @stack: Pointer to the head of the stack
+ */
+void free_stack(stack_t **stack)
 {
-	if (argc != 2)
+	stack_t *current, *temp;
+	if (stack == NULL || *stack == NULL)
+		return;
+	current = *stack;
+	while (current != NULL)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
+		temp = current;
+		current = current->next;
+		free(temp);
 	}
+}
 
-	FILE *file = fopen(argv[1], "r");
-	if (file == NULL)
+/**
+ * execute_instruction - Executes a Monty bytecode instruction
+ * @opcode: The opcode to execute
+ * @stack: Pointer to the head of the stack
+ * @line_number: The current line number in the Monty file
+ */
+void execute_instruction(char *opcode, stack_t **stack, unsigned int line_number)
+{
+	instruction_t instructions[] = {
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
+		{NULL, NULL}
+	};
+
+	int i = 0;
+
+	while (instructions[i].opcode != NULL)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
-
-	initialize_stack(&stack);
-
-	char *line = NULL;
-	size_t len = 0;
-	unsigned int line_number = 0;
-	char *opcode;
-
-	while (getline(&line, &len, file) != -1)
-	{
-		line_number++;
-		opcode = strtok(line, " \t\n");
-		if (opcode != NULL && opcode[0] != '#')
+		if (strcmp(opcode, instructions[i].opcode) == 0)
 		{
-			execute_instruction(opcode, &stack, line_number);
+			instructions[i].f(stack, line_number);
+			return;
 		}
+		i++;
 	}
-	free(line);
-	fclose(file);
+
+	/* If the opcode is not recognized, print an error message. */
+	/* Description: This message indicates that the program encountered
+	   an instruction it cannot interpret or execute. */
+	monty_error("unknown instruction", line_number, opcode);
+}
+
+/**
+ * monty_error - Prints an error message and exits the program
+ * @msg: The error message to print
+ * @line_number: The line number where the error occurred
+ * @opcode: The opcode associated with the error
+ */
+void monty_error(char *msg, unsigned int line_number, char *opcode)
+{
+	fprintf(stderr, "L%u: %s %s\n", line_number, msg, opcode);
 	free_stack(&stack);
-	return (0);
+	exit(EXIT_FAILURE);
 }
 
