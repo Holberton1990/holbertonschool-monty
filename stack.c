@@ -191,3 +191,7 @@ stack_t *push_stack(stack_t **stack, int n)
 
     return (new_node);
 }
+void initialize_stack(stack_t **stack)
+{
+    *stack = NULL; /* Initialize the stack to an empty state */
+}
