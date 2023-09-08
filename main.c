@@ -36,6 +36,12 @@ int main(int argc, char *argv[])
             continue;
 
         execute_instruction(token, &my_stack, line_number);
+
+	/* Check for unknown instruction or other errors */
+        if (some_condition) {
+            monty_error("unknown instruction", line_number, token);
+            /* You can also check other error conditions and call monty_error as needed */
+        }
     }
 
     free_stack(&my_stack);
