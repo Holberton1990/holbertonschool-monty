@@ -20,29 +20,26 @@ int main(int argc, char *argv[])
         fprintf(stderr, "USAGE: monty file\n");
         exit(EXIT_FAILURE);
     }
-
     monty_file = fopen(argv[1], "r");
     if (monty_file == NULL)
     {
         fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
         exit(EXIT_FAILURE);
     }
-
     while ((read = getline(&line, &len, monty_file)) != -1)
     {
         line_number++;
         char *token = strtok(line, " \t\n");
         if (token == NULL || *token == '#')
             continue;
-
-        execute_instruction(token, &my_stack, line_number);
-
-   }
-
+	
+	execute_instruction(token, &my_stack, line_number);
+    }
+    
     free_stack(&my_stack);
     fclose(monty_file);
     free(line);
-
+    
     return (EXIT_SUCCESS);
 }
 
