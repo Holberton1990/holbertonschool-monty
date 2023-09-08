@@ -6,7 +6,6 @@
  * @argv: An array of strings containing the command-line arguments.
  * Return: Always 0 on success.
  */
-
 int main(int argc, char *argv[])
 {
     stack_t *my_stack = NULL;
