@@ -28,7 +28,6 @@ void push(stack_t **stack, unsigned int line_number)
         exit(EXIT_FAILURE);
     }
 }
-
 /**
  * pall - Prints all the values on the stack.
  * @stack: A pointer to the stack.
