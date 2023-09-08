@@ -7,6 +7,7 @@
  * @stack: A pointer to the stack.
  * @line_number: The line number in the Monty file.
  */
+
 void push(stack_t **stack, unsigned int line_number)
 {
     char *arg;
