@@ -51,7 +51,6 @@ void execute_instruction(char *opcode, stack_t **stack, unsigned int line_number
 }	
 		i++;
 }
-
 /**
      * If the opcode is not recognized, print an error message.
      * Description: This message indicates that the program encountered 
